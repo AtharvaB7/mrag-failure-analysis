@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+data/mrag_bench/
+results/
+logs/
+.pytest_cache/
+outputs/       # Hydra's own run-output dir, distinct from our results/ dir
+.hydra/
+*.egg-info/

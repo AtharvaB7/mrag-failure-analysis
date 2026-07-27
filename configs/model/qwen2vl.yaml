@@ -1,0 +1,9 @@
+# @package model
+name: "qwen2vl-7b"
+hf_id: "Qwen/Qwen2-VL-7B-Instruct"
+wrapper: "qwen2vl"
+dtype: "bfloat16"
+device_map: "auto"
+# Qwen2-VL native resolution knobs (see models/qwen2vl.py); 28*28 = one visual "patch"
+min_pixels: 200704   # 256 * 28 * 28
+max_pixels: 1003520   # 1280 * 28 * 28

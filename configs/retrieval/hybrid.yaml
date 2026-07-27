@@ -1,0 +1,18 @@
+# @package retrieval
+name: "hybrid_rrf"
+type: "hybrid"
+top_k: 5
+# Reciprocal Rank Fusion: combines ranked lists from sparse + dense retrievers
+# without needing their raw scores to be on comparable scales (BM25 scores and
+# cosine similarities are not directly comparable; RRF sidesteps this by
+# fusing on rank position instead of score value).
+rrf_k: 60   # standard constant from Cormack et al. 2009; dampens the influence of top ranks
+sparse:
+  name: "sparse_bm25"
+  top_k: 10   # retrieve more than final top_k from each arm before fusing
+dense:
+  name: "dense_siglip"
+  top_k: 10
+  hf_id: "google/siglip-so400m-patch14-384"
+  embed_batch_size: 32
+  dtype: "float16"

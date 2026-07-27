@@ -1,0 +1,7 @@
+# @package model
+# Fallback secondary model if InternVL2.5-8B proves hard to reproduce in your environment.
+name: "llava-next-7b"
+hf_id: "llava-hf/llava-v1.6-mistral-7b-hf"
+wrapper: "llava_next"
+dtype: "bfloat16"
+device_map: "auto"

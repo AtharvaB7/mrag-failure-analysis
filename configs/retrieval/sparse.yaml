@@ -1,0 +1,8 @@
+# @package retrieval
+name: "sparse_bm25"
+type: "sparse"
+top_k: 5
+tokenizer: "simple_lowercase"   # see retrieval/sparse_bm25.py
+bm25_variant: "okapi"           # rank_bm25.BM25Okapi
+k1: 1.5
+b: 0.75

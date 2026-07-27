@@ -1,0 +1,4 @@
+# @package retrieval
+name: "no_retrieval"
+type: "none"
+top_k: 0

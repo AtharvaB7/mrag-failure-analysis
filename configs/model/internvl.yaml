@@ -1,0 +1,7 @@
+# @package model
+name: "internvl2_5-8b"
+hf_id: "OpenGVLab/InternVL2_5-8B"
+wrapper: "internvl"
+dtype: "bfloat16"
+device_map: "auto"
+num_image_tiles: 12   # InternVL's dynamic tiling; higher = more detail, more VRAM

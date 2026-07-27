@@ -1,0 +1,39 @@
+defaults:
+  - model: qwen2vl
+  - retrieval: none
+  - _self_
+
+# ---- Experiment identity ----
+run_name: "${model.name}_${retrieval.name}"
+seed: 42
+
+# ---- Paths (all relative to project root; override via CLI, never hardcode) ----
+paths:
+  project_root: "."
+  data_dir: "${paths.project_root}/data/mrag_bench"
+  image_corpus_dir: "${paths.data_dir}/images"
+  results_dir: "${paths.project_root}/results/${run_name}"
+  logs_dir: "${paths.project_root}/logs"
+
+# ---- Dataset ----
+dataset:
+  hf_id: "uclanlp/MRAG-Bench"
+  split: "test"
+  # Contamination check: report no-retrieval accuracy per scenario, flag
+  # scenarios where it's suspiciously close to hybrid-retrieval accuracy.
+  contamination_flag_threshold: 0.05   # flag if |no_retrieval_acc - hybrid_acc| < this, per scenario
+
+# ---- Retrieval shared settings ----
+retrieval_common:
+  top_k: 5
+
+# ---- Evaluation ----
+evaluation:
+  batch_size: 4
+  max_new_tokens: 32
+  answer_extraction: "rule_based"   # "rule_based" | "gpt_fallback"
+
+# ---- Reproducibility ----
+determinism:
+  torch_deterministic: true
+  cudnn_benchmark: false

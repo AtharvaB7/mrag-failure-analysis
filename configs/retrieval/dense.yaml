@@ -1,0 +1,14 @@
+# @package retrieval
+name: "dense_siglip"
+type: "dense"
+top_k: 5
+# SigLIP is chosen over vanilla CLIP: stronger zero-shot image-text alignment
+# on recent benchmarks, and a sigmoid (not softmax) loss that scales better
+# to large batch retrieval-style comparisons. Swap to CLIP or BGE-VL by
+# changing hf_id + embedding_dim if you want an ablation.
+hf_id: "google/siglip-so400m-patch14-384"
+embedding_dim: 1152
+index_type: "flat_ip"   # faiss.IndexFlatIP over L2-normalized embeddings = cosine sim
+normalize_embeddings: true
+embed_batch_size: 32   # batched to avoid OOM when the VLM is already resident on the same GPU
+dtype: "float16"
